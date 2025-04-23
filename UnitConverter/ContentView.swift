@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+struct ProminentTitle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .bold()
+            .foregroundStyle(.blue)
+    }
+}
+
+extension View {
+    func prominent() -> some View {
+        modifier(ProminentTitle())
+    }
+}
+
 struct ContentView: View {
     @State private var input: Double = 0
     @State private var inputUnit = ""
@@ -74,6 +89,7 @@ struct ContentView: View {
                 }
                 Section("Output") {
                     Text(outputValue.formatted())
+                        .prominent()
                 }
             }
             .navigationTitle("UnitConverter")
